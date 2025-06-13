@@ -1,0 +1,2 @@
+Adds a cost for armies each turn. This will be taken by income; if there is not enough income it will be taken from gold reserves.
+Armies will be destroyed if there is not enough gold. You can also destroy armies, which is accessed from the menu.
