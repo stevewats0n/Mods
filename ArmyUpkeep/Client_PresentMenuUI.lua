@@ -21,7 +21,6 @@
     Armies_slider = UI.CreateNumberInputField(box).SetSliderMinValue(0).SetSliderMaxValue(0).SetInteractable(false)
     Confirm_box = UI.CreateButton(box).SetText("Confirm").SetInteractable(false)
 
-    print("Dan "); 
 end
 
 function Choose_territory ()
@@ -44,10 +43,6 @@ function Get_selected (terr_details)
 end
 
 function To_server()
-    print(Armies_slider.GetValue())
-    print(ClientGame.Us.ID)
-    print(Terr_details.ID)
-    print(ClientGame.Map.Territories)
     local order = WL.GameOrderCustom.Create(
         ClientGame.Us.ID, "Remove "..Armies_slider.GetValue().." armies from "..ClientGame.Map.Territories[Terr_details.ID].Name,
         "armyRM"..Terr_details.ID..","..Armies_slider.GetValue())
