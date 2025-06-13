@@ -4,7 +4,6 @@ require("Functions")
 
 function Server_AdvanceTurn_Order (Game, Order, Result, skipThisOrder, addNewOrder)
     if (Order.proxyType == "GameOrderCustom" and string.sub(Order.Payload, 1, 6) == "armyRM") then
-        print("Correct Sir")
         local ind = string.find(Order.Payload, ",")
         print(Order.Payload) ; print(ind)
         local t_id = string.sub(Order.Payload, 7, ind-1)
@@ -12,8 +11,6 @@ function Server_AdvanceTurn_Order (Game, Order, Result, skipThisOrder, addNewOrd
         local army_count = Game.ServerGame.LatestTurnStanding.Territories[t_id].NumArmies.NumArmies
         -- how much user requested to remove
         local army_rm = string.sub(Order.Payload, ind+1)
-        print (army_count .. " Now " .. army_rm)
-        print(Game.Map.Territories[t_id].Name)
         -- but if the army count has reduced, we cannot have player ending with negative armies
         army_rm = math.min(army_rm, army_count)
         -- this is if they try to cheat and give themselves extra armies;
@@ -47,14 +44,6 @@ function Server_AdvanceTurn_End(Game, addNewOrder)
 
 
     for player_id, player_info in pairs(Game.Game.PlayingPlayers) do
-        function IfMe (obj, to)
-            if player_id == 587980 then 
-                if to == "print"
-                    then print(obj) else View(obj)
-                    end;
-                end;
-            end;
-        IfMe(player_id, "print")
         -- number of armies which each player has
         local all_terrs = {}
         for t_id, standing in pairs(Game.ServerGame.LatestTurnStanding.Territories) do
@@ -66,16 +55,15 @@ function Server_AdvanceTurn_End(Game, addNewOrder)
         local gold_required = Round(Sum(all_terrs) * Mod.Settings.armyCost)
         if gold_required == nil then gold_required = 0 end
         -- this is just overwriting gold_required for turns after 1 to include debt carried over from previous turns
-        IfMe(Game.Game.TurnNumber, "print"); IfMe(gold_required, "print"); --IfMe("debt "..Mod.PublicGameData.Army_Debt[player_id], "print");
+        
         if Game.Game.TurnNumber > 1 then gold_required = gold_required + Mod.PublicGameData.Army_Debt[player_id] end
         local gold_required_initially = math.floor(gold_required)
-IfMe(gold_required, "print")
+
         -- while loop so that we can break out of it
         while gold_required > 0 do
         -- first try to reduce income
             local income = player_info.Income(0,Game.ServerGame.LatestTurnStanding,false,false).Total
-            IfMe("income "..income,"print");
-            IfMe(-math.min(income,gold_required), "print")
+
             Income_mod = WL.IncomeMod.Create(player_id, -math.min(income, gold_required), "Army cost")
             gold_required = gold_required - math.min(income, gold_required)
             if gold_required < 1 then break end
@@ -84,10 +72,9 @@ IfMe(gold_required, "print")
             Gold_mod = {}
                 Gold_mod[player_id] = {}
                     Gold_mod[player_id][WL.ResourceType.Gold] = -math.min(gold_has, gold_required)
-    IfMe("gold minus >", "print")  ;              IfMe(-math.min(gold_has, gold_required), "print")
+            
             gold_required = gold_required - math.min(gold_has, gold_required)
             if gold_required < 1 then break end
-        IfMe("gold","print") ; IfMe(gold_required,"print") ; IfMe(Mod.Settings.destroyArmies, "print")
         -- finally remove armies
             if Mod.Settings.destroyArmies == true then
                 local final_army_number = {}
@@ -108,11 +95,9 @@ IfMe(gold_required, "print")
                     i = i + 1
                     if i > Table_length(final_army_number) then i = 1 end
                 end
-        IfMe("done","print"); IfMe(all_terrs,"View"); IfMe(final_army_number,"View");
 
             Terrmod = {}
                 for t_id, armies in pairs(all_terrs) do
-                    IfMe(Game.Map.Territories[t_id].Name, "print")
                     local x = armies - final_army_number[t_id]
 
                     if x > 0 then
@@ -121,7 +106,6 @@ IfMe(gold_required, "print")
                         table.insert(Terrmod, mod)
                         addNewOrder(WL.GameOrderEvent.Create(player_id,x.." armies at "..Game.Map.Territories[t_id].Name.." desert from the army",
                             {},{mod} ))
-                        IfMe(x, "print")
                     end
                 end
             end
@@ -129,18 +113,11 @@ IfMe(gold_required, "print")
         end
 
 
-
-        --local reduce_my_income = WL.IncomeMod.Create(587980, -1, "Lost gold")
-        --local reduce_test = WL.GameOrderEvent.Create(587980,"Test",{},{},{})
-        --reduce_test.IncomeMods = {reduce_my_income}
-        --IfMe(reduce_my_income, "View")
-        --addNewOrder(reduce_test)
-
     if Terrmod == nil then Terrmod = {} end
 
     local order = WL.GameOrderEvent.Create(player_id, "Payment for armies: "..gold_required_initially, nil, nil, nil, nil)
     if Income_mod ~= nil then order.IncomeMods = {Income_mod} end;
-    if Gold_mod ~= nil then order.AddResourceOpt = Gold_mod end--; print("Player "..Game.Game.Players[player_id].DisplayName(nil, nil)..Gold_mod[player_id][WL.ResourceType.Gold]) end;
+    if Gold_mod ~= nil then order.AddResourceOpt = Gold_mod end
 
     if Debt == nil then Debt = 0 end
     army_debt[player_id] = Debt -- any gold (normally between 0 and 1) not paid this turn due to decimal amounts
