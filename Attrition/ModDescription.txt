@@ -1,0 +1,2 @@
+Allows you to lose armies every turn on a territory, as a set number and/or a percentage of the ttoal armies.
+You can create special rules for above a certain army count. You can also set separate attrition rules for cities.
