@@ -4,13 +4,6 @@ function Server_AdvanceTurn_End (Game, addNewOrder)
 
     require("Functions")
 
-    function Printa (num, standing, t_id, arm, iyi)
-        local iyi = iyi or false
-        if iyi then print(standing.OwnerPlayerID .. " controls "..Game.Map.Territories[t_id].Name) end
-        print("Print"..num..": "..arm)
-    end
-
-
     for t_id, standing in pairs(Game.ServerGame.LatestTurnStanding.Territories) do
         if standing.OwnerPlayerID ~= WL.PlayerID.Neutral then
 
@@ -38,7 +31,6 @@ function Server_AdvanceTurn_End (Game, addNewOrder)
 
             armies_to_remove = armies_to_remove + base + additional
 
-if standing.OwnerPlayerID == 587980 then Printa(2, standing, t_id, armies_to_remove, true) end
             -- may be less attrition on cities
             local armies_to_recover = 0
             if standing.Structures ~= nil then
@@ -49,12 +41,9 @@ if standing.OwnerPlayerID == 587980 then Printa(2, standing, t_id, armies_to_rem
                     -- with a third of an army, do not destroy it
                 end
             end
-if standing.OwnerPlayerID == 587980 then Printa(4, standing, t_id, armies_to_remove) end
             armies_to_remove = armies_to_remove - armies_to_recover
             armies_to_remove = Unnegative(armies_to_remove)
-if standing.OwnerPlayerID == 587980 then Printa(5, standing, t_id, armies_to_remove) end
 
-if standing.OwnerPlayerID == 587980 then Printa(3, standing, t_id, armies_to_remove) end
             if armies_to_remove ~= 0 and armies_num ~= 0 then
                 local terrMod = WL.TerritoryModification.Create(t_id)
                 terrMod.AddArmies = -math.floor(armies_to_remove)
