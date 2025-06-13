@@ -1,4 +1,4 @@
--- player id 587980
+
 
 function Server_AdvanceTurn_End (Game, addNewOrder)
 
