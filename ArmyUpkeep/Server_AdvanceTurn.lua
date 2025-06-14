@@ -44,6 +44,9 @@ function Server_AdvanceTurn_End(Game, addNewOrder)
 
 
     for player_id, player_info in pairs(Game.Game.PlayingPlayers) do
+        -- reset global variables
+        Gold_mod = nil
+        Income_mod = nil
         -- number of armies which each player has
         local all_terrs = {}
         for t_id, standing in pairs(Game.ServerGame.LatestTurnStanding.Territories) do
