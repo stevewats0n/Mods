@@ -25,7 +25,7 @@ function Server_AdvanceTurn_End (Game, addNewOrder)
                 additional = Unnegative(armies_num - Mod.Settings.Additional_StartsAt)
                 if additional > 0 then
                     additional = additional * (Mod.Settings.Base_Percent + Mod.Settings.Additional_Percent) / 100 + 
-                                            (Mod.Settings.Base_Armies + Mod.Settings.Additional_Armies)
+                                            (Mod.Settings.Additional_Armies)
                 else additional = 0 end
             end
 
