@@ -3,6 +3,8 @@
 function Server_AdvanceTurn_End (Game, addNewOrder)
 
     require("Functions")
+    local publicgamedata = Mod.PublicGameData
+    publicgamedata.Attrition = {}
 
     for t_id, standing in pairs(Game.ServerGame.LatestTurnStanding.Territories) do
         if standing.OwnerPlayerID ~= WL.PlayerID.Neutral then
@@ -44,6 +46,8 @@ function Server_AdvanceTurn_End (Game, addNewOrder)
             armies_to_remove = armies_to_remove - armies_to_recover
             armies_to_remove = Unnegative(armies_to_remove)
 
+            publicgamedata.Attrition[t_id] = armies_to_remove
+            
             if armies_to_remove ~= 0 and armies_num ~= 0 then
                 local terrMod = WL.TerritoryModification.Create(t_id)
                 terrMod.AddArmies = -math.floor(armies_to_remove)
@@ -53,5 +57,6 @@ function Server_AdvanceTurn_End (Game, addNewOrder)
             end
         end
     end
+    Mod.PublicGameData = publicgamedata
 end
 
