@@ -61,10 +61,12 @@ function Server_AdvanceTurn_End(Game, addNewOrder)
         end
         -- how much gold is required to maintain this many armies
         local gold_required = Sum(all_terrs) * Mod.Settings.armyCost
+        print(gold_required)
         if gold_required == nil then gold_required = 0 end
         -- this is just overwriting gold_required for turns after 1 to include debt carried over from previous turns
         
         if Game.Game.TurnNumber > 1 then gold_required = gold_required + Mod.PublicGameData.Army_Debt[player_id] end
+        print(gold_required)
         local gold_required_initially = math.floor(gold_required)
 
         -- while loop so that we can break out of it
@@ -72,14 +74,14 @@ function Server_AdvanceTurn_End(Game, addNewOrder)
         -- first try to reduce income
             local income = player_info.Income(0,Game.ServerGame.LatestTurnStanding,false,false).Total
 
-            Income_mod = WL.IncomeMod.Create(player_id, -math.floor( math.min(income, gold_required) ), "Army cost")
-            gold_required = gold_required - math.floor( math.min(income, gold_required) )
-            if gold_required < 1 then break end
+            Income_mod = WL.IncomeMod.Create(player_id, - math.floor(math.min(income, gold_required)), "Army cost")
+            gold_required = gold_required - math.floor(math.min(income, gold_required))
+            if gold_required < 1 then print(gold_required) break end
         -- then remove gold reserves
             local gold_has = Game.ServerGame.LatestTurnStanding.Resources[player_id][WL.ResourceType.Gold]
             Gold_mod = {}
                 Gold_mod[player_id] = {}
-                    Gold_mod[player_id][WL.ResourceType.Gold] = -math.floor( math.min(gold_has, gold_required) )
+                    Gold_mod[player_id][WL.ResourceType.Gold] = -math.floor(math.min(gold_has, gold_required))
             
             gold_required = gold_required - math.floor( math.min(gold_has, gold_required) )
             if gold_required < 1 then break end
