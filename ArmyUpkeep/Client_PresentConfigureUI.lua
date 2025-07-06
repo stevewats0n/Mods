@@ -21,6 +21,10 @@ function Client_PresentConfigureUI(rootParent)
     destroyArmiesInput = UI.CreateCheckBox(select).SetText("Destroy armies if not enough gold?")
         .SetIsChecked(true)
 
+    select = UI.CreateVerticalLayoutGroup(rootParent);
+    setNeutralLessThan1 = UI.CreateCheckBox(select).SetText("Set territories with 0 armies at end of the turn to neutral?")
+        .SetIsChecked(false)
+
 
 
 end
