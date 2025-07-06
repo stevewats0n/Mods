@@ -16,6 +16,7 @@ function Client_PresentConfigureUI(rootParent)
         .SetSliderMinValue(1)
         .SetSliderMaxValue(4)
         .SetValue(initial_armyCost)
+        .SetWholeNumbers(false)
 
     select = UI.CreateVerticalLayoutGroup(rootParent);
     destroyArmiesInput = UI.CreateCheckBox(select).SetText("Destroy armies if not enough gold?")
