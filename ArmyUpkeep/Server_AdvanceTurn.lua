@@ -72,16 +72,16 @@ function Server_AdvanceTurn_End(Game, addNewOrder)
         -- first try to reduce income
             local income = player_info.Income(0,Game.ServerGame.LatestTurnStanding,false,false).Total
 
-            Income_mod = WL.IncomeMod.Create(player_id, -math.min(income, gold_required), "Army cost")
-            gold_required = gold_required - math.min(income, gold_required)
+            Income_mod = WL.IncomeMod.Create(player_id, -math.floor( math.min(income, gold_required) ), "Army cost")
+            gold_required = gold_required - math.floor( math.min(income, gold_required) )
             if gold_required < 1 then break end
         -- then remove gold reserves
             local gold_has = Game.ServerGame.LatestTurnStanding.Resources[player_id][WL.ResourceType.Gold]
             Gold_mod = {}
                 Gold_mod[player_id] = {}
-                    Gold_mod[player_id][WL.ResourceType.Gold] = -math.min(gold_has, gold_required)
+                    Gold_mod[player_id][WL.ResourceType.Gold] = -math.floor( math.min(gold_has, gold_required) )
             
-            gold_required = gold_required - math.min(gold_has, gold_required)
+            gold_required = gold_required - math.floor( math.min(gold_has, gold_required) )
             if gold_required < 1 then break end
         -- finally remove armies
             if Mod.Settings.destroyArmies == true then
