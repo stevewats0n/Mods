@@ -60,7 +60,7 @@ function Server_AdvanceTurn_End(Game, addNewOrder)
             end
         end
         -- how much gold is required to maintain this many armies
-        local gold_required = Sum(all_terrs) * Mod.Settings.armyCost
+        gold_required = Sum(all_terrs) * Mod.Settings.armyCost
         if gold_required == nil then gold_required = 0 end
         -- this is just overwriting gold_required for turns after 1 to include debt carried over from previous turns
         
@@ -127,7 +127,7 @@ function Server_AdvanceTurn_End(Game, addNewOrder)
     if Income_mod ~= nil then order.IncomeMods = {Income_mod} end;
     if Gold_mod ~= nil then order.AddResourceOpt = Gold_mod end
 
-    if Debt == nil then Debt = 0 end
+    Debt = Debt or gold_required
     army_debt[player_id] = Debt -- any gold (normally between 0 and 1) not paid this turn due to decimal amounts
 
     addNewOrder(order)
