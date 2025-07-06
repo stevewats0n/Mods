@@ -16,7 +16,7 @@ function Client_PresentConfigureUI(rootParent)
     local select = UI.CreateVerticalLayoutGroup(rootParent);
     UI.CreateLabel(select).SetText('Army cost per turn')
     armyCostInput = UI.CreateNumberInputField(select)
-        .SetSliderMinValue(1)
+        .SetSliderMinValue(0)
         .SetSliderMaxValue(4)
         .SetValue(initial_armyCost)
         .SetWholeNumbers(false)
