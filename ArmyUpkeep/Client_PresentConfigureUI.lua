@@ -22,7 +22,7 @@ function Client_PresentConfigureUI(rootParent)
         .SetIsChecked(true)
 
     select = UI.CreateVerticalLayoutGroup(rootParent);
-    setNeutralLessThan1 = UI.CreateCheckBox(select).SetText("Set territories with 0 armies at end of the turn to neutral?")
+    setZeroArmiesNeutral = UI.CreateCheckBox(select).SetText("Set territories with 0 armies (and no special units) at end of the turn to neutral?")
         .SetIsChecked(false)
 
 
