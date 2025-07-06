@@ -60,7 +60,7 @@ function Server_AdvanceTurn_End(Game, addNewOrder)
             end
         end
         -- how much gold is required to maintain this many armies
-        gold_required = Sum(all_terrs) * Mod.Settings.armyCost
+        local gold_required = Sum(all_terrs) * Mod.Settings.armyCost
         if gold_required == nil then gold_required = 0 end
         -- this is just overwriting gold_required for turns after 1 to include debt carried over from previous turns
         
@@ -118,7 +118,8 @@ function Server_AdvanceTurn_End(Game, addNewOrder)
                 end
             end
             break
-        end
+        
+        end -- end of the while loop
 
 
     if Terrmod == nil then Terrmod = {} end
@@ -134,7 +135,7 @@ function Server_AdvanceTurn_End(Game, addNewOrder)
     end -- end of the player loop
 
     local publicgamedata = Mod.PublicGameData;
-    if Game.Game.TurnNumber > 1 then
+    if Game.Game.TurnNumber > 0 then
         publicgamedata.Army_Debt = army_debt
     else
         army_debt = {}
