@@ -10,7 +10,7 @@
 		return;
 	end
     if (ClientGame.Us == nil) then
-		UI.CreateLabel(vert).SetText("You cannot gift armies since you're not in the game");
+		UI.CreateLabel(vert).SetText("You cannot destroy armies since you're not in the game");
 		return;
 	end
 
