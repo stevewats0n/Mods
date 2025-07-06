@@ -11,7 +11,7 @@ function Client_PresentConfigureUI(rootParent)
     if initial_destroyArmies == nil then initial_destroyArmies = true end;
 
     local initial_setZeroArmiesNeutral = Mod.Settings.setZeroArmiesNeutral;
-    if initial_destroyArmies == nil then initial_destroyArmies = false end;
+    if initial_destroyArmies == nil then initial_setZeroArmiesNeutral = false end;
 
     local select = UI.CreateVerticalLayoutGroup(rootParent);
     UI.CreateLabel(select).SetText('Army cost per turn')
