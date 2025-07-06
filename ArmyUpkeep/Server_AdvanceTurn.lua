@@ -140,7 +140,16 @@ function Server_AdvanceTurn_End(Game, addNewOrder)
     end
 
     if setZeroArmiesNeutral then
-        
+        for t_id, standing in pairs(Game.ServerGame.LatestTurnStanding.Territories) do
+            if standing.IsNeutral == false then
+                if standing.NumArmies.IsEmpty then
+                    local terrMod = WL.TerritoryModification.Create(t_id)
+                    terrMod.SetOwnerOpt = WL.PlayerID.Neutral
+                    addNewOrder(WL.GameOrderEvent.Create(standing.OwnerPlayerID, Game.Map.Territories[t_id].Name.." has no armies - turning to neutral", 
+                            {}, {terrMod}, nil, nil) )
+                end
+            end
+        end
     end
 
     Mod.PublicGameData = publicgamedata
