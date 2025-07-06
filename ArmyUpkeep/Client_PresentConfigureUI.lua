@@ -10,6 +10,9 @@ function Client_PresentConfigureUI(rootParent)
     local initial_destroyArmies = Mod.Settings.destroyArmies;
     if initial_destroyArmies == nil then initial_destroyArmies = true end;
 
+    local initial_allowRemoveArmies = Mod.Settings.allowRemoveArmies;
+    if initial_allowRemoveArmies == nil then initial_allowRemoveArmies = true end;
+
     local initial_setZeroArmiesNeutral = Mod.Settings.setZeroArmiesNeutral;
     if initial_destroyArmies == nil then initial_setZeroArmiesNeutral = false end;
 
@@ -21,6 +24,10 @@ function Client_PresentConfigureUI(rootParent)
         .SetValue(initial_armyCost)
         .SetWholeNumbers(false)
 
+    select = UI.CreateVerticalLayoutGroup(rootParent);
+    allowRemoveArmies = UI.CreateCheckBox(select).SetText("Allow players to remove armies?")
+        .SetIsChecked(initial_allowRemoveArmies)
+    
     select = UI.CreateVerticalLayoutGroup(rootParent);
     destroyArmiesInput = UI.CreateCheckBox(select).SetText("Destroy armies if not enough gold?")
         .SetIsChecked(initial_destroyArmies)
