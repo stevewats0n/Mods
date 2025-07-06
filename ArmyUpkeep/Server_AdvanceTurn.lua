@@ -139,7 +139,7 @@ function Server_AdvanceTurn_End(Game, addNewOrder)
         publicgamedata.Army_Debt = army_debt
     end
 
-    if setZeroArmiesNeutral then
+    if Mod.Settings.setZeroArmiesNeutral then
         for t_id, standing in pairs(Game.ServerGame.LatestTurnStanding.Territories) do
             if standing.IsNeutral == false then
                 if standing.NumArmies.IsEmpty then
