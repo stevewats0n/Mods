@@ -139,6 +139,10 @@ function Server_AdvanceTurn_End(Game, addNewOrder)
         publicgamedata.Army_Debt = army_debt
     end
 
+    if setZeroArmiesNeutral then
+        
+    end
+
     Mod.PublicGameData = publicgamedata
 
 end
