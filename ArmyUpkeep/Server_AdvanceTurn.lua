@@ -54,6 +54,11 @@ function Server_AdvanceTurn_End(Game, addNewOrder)
                 all_terrs[t_id] = standing.NumArmies.NumArmies
             end
         end
+        if Mod.PublicGameData.Attrition ~= nil then
+            for t_id, armies_lost in pairs(Mod.PublicGameData.Attrition) do
+                all_terrs[t_id] = all_terrs[t_id] - math.floor(armies_lost)
+            end
+        end
         -- how much gold is required to maintain this many armies
         local gold_required = Round(Sum(all_terrs) * Mod.Settings.armyCost)
         if gold_required == nil then gold_required = 0 end
