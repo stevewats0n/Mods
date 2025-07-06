@@ -134,6 +134,8 @@ function Server_AdvanceTurn_End(Game, addNewOrder)
     addNewOrder(order)
     end -- end of the player loop
 
+    print("This is the things")
+    View(army_debt)
     local publicgamedata = Mod.PublicGameData;
     if Game.Game.TurnNumber > 0 then
         publicgamedata.Army_Debt = army_debt
