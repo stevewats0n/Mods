@@ -59,6 +59,7 @@ function Server_AdvanceTurn_End (Game, addNewOrder)
     end
     
     local publicgamedata = Mod.PublicGameData
+        publicgamedata.Attrition = {}
         publicgamedata.Attrition = attrition_info
     Mod.PublicGameData = publicgamedata
 end
