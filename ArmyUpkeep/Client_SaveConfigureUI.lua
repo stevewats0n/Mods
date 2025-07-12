@@ -1,7 +1,11 @@
 
+require("Functions")
+
 function Client_SaveConfigureUI (alert)
-  if (armyCostInput.GetValue() * 100) % 1 ~= 0 then alert("Army cost should be a whole number or to one decimal place "..(armyCostInput.GetValue() * 100) % 1 ) end
-  Mod.Settings.armyCost = armyCostInput.GetValue()
+  -- to resolve if user enters figure not to 0 or 1 dp
+  local armyCost = Round( armyCostInput.GetValue() * 10 )
+  armyCost = armyCost / 10    
+  Mod.Settings.armyCost = armyCost
   Mod.Settings.allowRemoveArmies = allowRemoveArmies.GetIsChecked()
   Mod.Settings.destroyArmies = destroyArmiesInput.GetIsChecked()
   Mod.Settings.setZeroArmiesNeutral = setZeroArmiesNeutral.GetIsChecked()
