@@ -53,5 +53,5 @@ function To_server()
 	table.insert(orders, order);
 	ClientGame.Orders = orders;
 
-    Close()
+    Choose_territory ()
 end
