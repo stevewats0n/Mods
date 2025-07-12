@@ -21,8 +21,8 @@ function Client_PresentConfigureUI(rootParent)
     armyCostInput = UI.CreateNumberInputField(select)
         .SetSliderMinValue(0)
         .SetSliderMaxValue(4)
-        .SetValue(initial_armyCost)
         .SetWholeNumbers(false)
+        .SetValue(initial_armyCost)
 
     select = UI.CreateVerticalLayoutGroup(rootParent);
     allowRemoveArmies = UI.CreateCheckBox(select).SetText("Allow players to remove armies?")
