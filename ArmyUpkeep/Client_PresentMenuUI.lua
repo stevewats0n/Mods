@@ -45,9 +45,10 @@ function Get_selected (terr_details)
 end
 
 function To_server()
+    local armies_removed = Armies_slider.GetValue()
     local order = WL.GameOrderCustom.Create(
-        ClientGame.Us.ID, "Remove "..Armies_slider.GetValue().." armies from "..ClientGame.Map.Territories[Terr_details.ID].Name  .."armyRM"..Terr_details.ID..","..Armies_slider.GetValue(),
-        "armyRM"..Terr_details.ID..","..Armies_slider.GetValue())
+        ClientGame.Us.ID, "Remove "..armies_removed.." armies from "..ClientGame.Map.Territories[Terr_details.ID].Name  .."armyRM"..Terr_details.ID..","..armies_removed,
+        "armyRM"..Terr_details.ID..","..armies_removed)
 
     local orders = ClientGame.Orders;
 	table.insert(orders, order);
