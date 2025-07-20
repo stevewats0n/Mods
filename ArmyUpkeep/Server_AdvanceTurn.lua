@@ -16,16 +16,16 @@ function Server_AdvanceTurn_Order (Game, Order, Result, skipThisOrder, addNewOrd
         -- this is if they try to cheat and give themselves extra armies;
         if army_rm < 0 then army_rm = 0; end;
 
-        if Order.PlayerID ~= Game.ServerGame.LatestTurnStanding.Territories[territory].OwnerPlayerID then
-            skipThisOrder(WL.ModOrderControl.Skip); return;
-        end
+--        if Order.PlayerID ~= Game.ServerGame.LatestTurnStanding.Territories[territory].OwnerPlayerID then
+--            skipThisOrder(WL.ModOrderControl.Skip); return;
+--        end
 
-        local terr_mod = WL.TerritoryModification.Create(territory)
-        terr_mod.AddArmies = -army_rm
-        local order = WL.GameOrderEvent.Create(Order.PlayerID, "Removed armies from "..Game.Map.Territories[territory].Name,
-            {}, {terr_mod})
-        addNewOrder(order);
-        skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
+--        local terr_mod = WL.TerritoryModification.Create(territory)
+--        terr_mod.AddArmies = -army_rm
+--        local order = WL.GameOrderEvent.Create(Order.PlayerID, "Removed armies from "..Game.Map.Territories[territory].Name,
+--            {}, {terr_mod})
+--        addNewOrder(order);
+--        skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
 
 
     end
