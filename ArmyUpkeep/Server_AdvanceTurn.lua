@@ -7,6 +7,7 @@ function Server_AdvanceTurn_Order (Game, Order, Result, skipThisOrder, addNewOrd
         print (Order.Payload);
         local ind = string.find(Order.Payload, ",")
         local territory = string.sub(Order.Payload, 7, ind-1)
+            error(ind.." terr "..territory)
         -- the actual count of armies
         local army_count = Game.ServerGame.LatestTurnStanding.Territories[territory].NumArmies.NumArmies
         -- how much user requested to remove
