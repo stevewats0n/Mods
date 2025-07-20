@@ -11,7 +11,7 @@ function Server_AdvanceTurn_Order (Game, Order, Result, skipThisOrder, addNewOrd
         local army_count = Game.ServerGame.LatestTurnStanding.Territories[territory].NumArmies.NumArmies
         -- how much user requested to remove
         local army_rm = string.sub(Order.Payload, ind+1)
-                    alert("index "..ind.." terr "..territory.." army count ".." army to remove "..army_rm)
+                    alert("index "..ind.." terr "..territory.." army count ".." army to remove ")
         -- but if the army count has reduced, we cannot have player ending with negative armies
         army_rm = math.min(army_rm, army_count)
         -- this is if they try to cheat and give themselves extra armies;
