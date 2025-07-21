@@ -25,7 +25,7 @@ function Server_AdvanceTurn_Order (Game, Order, Result, skipThisOrder, addNewOrd
         local order = WL.GameOrderEvent.Create(Order.PlayerID, "Removed armies from "..Game.Map.Territories[t_id].Name,
             {}, {terr_mod})
         addNewOrder(order);
---        skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
+        skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
 
 
     end
