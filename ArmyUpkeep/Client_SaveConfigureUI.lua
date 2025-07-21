@@ -6,7 +6,6 @@ function Client_SaveConfigureUI (alert)
   local armyCost = Round( armyCostInput.GetValue() * 10 )
   armyCost = armyCost / 10
   Mod.Settings.armyCost = armyCost
-  alert(armyCost)
   Mod.Settings.allowRemoveArmies = allowRemoveArmies.GetIsChecked()
   Mod.Settings.destroyArmies = destroyArmiesInput.GetIsChecked()
   Mod.Settings.setZeroArmiesNeutral = setZeroArmiesNeutral.GetIsChecked()
