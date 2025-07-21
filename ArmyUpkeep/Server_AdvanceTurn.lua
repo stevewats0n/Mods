@@ -13,7 +13,7 @@ function Server_AdvanceTurn_Order (Game, Order, Result, skipThisOrder, addNewOrd
         local army_rm = string.sub(Order.Payload, ind+1)
         -- but if the army count has reduced, we cannot have player ending with negative armies
         army_rm = math.min(army_rm, army_count)
-        -- this is if they try to cheat and give themselves extra armies;
+        -- this is if they try to give themselves extra armies;
         if army_rm < 0 then army_rm = 0; end;
 
         if Order.PlayerID ~= Game.ServerGame.LatestTurnStanding.Territories[t_id].OwnerPlayerID then
