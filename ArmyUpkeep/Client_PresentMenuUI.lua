@@ -44,7 +44,7 @@ function Get_selected (terr_details)
     if (Game.LatestStanding.Territories[terr_details.ID].OwnerPlayerID ~= Game.Us.ID) then 
 		UI.Alert("Not your territory.") return;
     elseif Game.LatestStanding.Territories[terr_details.ID].NumArmies.NumArmies == 0 then UI.Alert("Not any armies here."); return;
-    else Armies_slider.SetInteractable(true).SetSliderMaxValue(standing_info.NumArmies.NumArmies)
+    else Armies_slider.SetInteractable(true).SetSliderMaxValue(Game.LatestStanding.Territories[terr_details.ID].NumArmies.NumArmies)
         Confirm_box.SetInteractable(true).SetOnClick(To_server)
     end
 
