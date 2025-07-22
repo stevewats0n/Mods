@@ -5,9 +5,9 @@ require("Functions")
 function Server_AdvanceTurn_Order (Game, Order, Result, skipThisOrder, addNewOrder)
     if (Order.proxyType == "GameOrderCustom" and string.sub(Order.Payload, 1, 6) == "armyRM") then
         print (Order.Payload);
-            addNewOrder(WL.GameOrderEvent.Create(Order.PlayerID, Order.Payload, {}, nil))
+--            addNewOrder(WL.GameOrderEvent.Create(Order.PlayerID, Order.Payload, {}, nil))
         local ind = string.find(Order.Payload, ",")
-                addNewOrder(WL.GameOrderEvent.Create(Order.PlayerID, "Debug ind: "..Order.Payload.." t_id: ", {}, nil) )
+                addNewOrder(WL.GameOrderEvent.Create(Order.PlayerID, "Debug ind: "..ind.." t_id: ", {}, nil) )
 --        local t_id = string.sub(Order.Payload, 7, ind-1)
         -- the actual count of armies
 --        local army_count = Game.ServerGame.LatestTurnStanding.Territories[t_id].NumArmies.NumArmies
