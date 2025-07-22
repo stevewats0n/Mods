@@ -10,12 +10,12 @@ function Server_AdvanceTurn_Order (Game, Order, Result, skipThisOrder, addNewOrd
         -- the actual count of armies
         local army_count = Game.ServerGame.LatestTurnStanding.Territories[t_id].NumArmies.NumArmies
         -- how much user requested to remove
---        local army_rm = string.sub(Order.Payload, ind+1)
+        local army_rm = string.sub(Order.Payload, ind+1)
         -- but if the army count has reduced, we cannot have player ending with negative armies
---        army_rm = math.min(army_rm, army_count)
+        army_rm = math.min(army_rm, army_count)
         -- this is if they try to give themselves extra armies;
---        if army_rm < 0 then army_rm = 0; end;
-    addNewOrder(WL.GameOrderEvent.Create(Order.PlayerID, "Debug ind: "..ind.." t_id: "..t_id.." army count: "..army_count, {}, nil) )
+        if army_rm < 0 then army_rm = 0; end;
+    addNewOrder(WL.GameOrderEvent.Create(Order.PlayerID, "Debug ind: "..ind.." t_id: "..t_id.." army count: "..army_count.." and army to remove: "..army_rm, {}, nil) )
 --        if Order.PlayerID ~= Game.ServerGame.LatestTurnStanding.Territories[t_id].OwnerPlayerID then
 --            skipThisOrder(WL.ModOrderControl.Skip); -- return;
 --        end
