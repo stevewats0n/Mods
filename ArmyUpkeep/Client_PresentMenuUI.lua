@@ -23,6 +23,7 @@ end
 
 function MainUI ()
 	local box = UI.CreateVerticalLayoutGroup(RootParent);
+		Current_debt = UI.CreateLabel(box).SetText("Amount of debt: "..Mod.PublicGameData.Army_Debt[Game.Us.ID])
 	Select_box = UI.CreateButton(box).SetText("Remove Armies").SetColor("#6C73D1").SetOnClick(Choose_territory)
 	Select_instructions = UI.CreateLabel(box).SetText("")
 	UI.CreateLabel(box).SetText("Number of armies to remove")
