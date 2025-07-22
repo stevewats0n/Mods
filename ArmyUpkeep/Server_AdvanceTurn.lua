@@ -75,7 +75,7 @@ function Server_AdvanceTurn_End(Game, addNewOrder)
 
             Income_mod = WL.IncomeMod.Create(player_id, - math.floor(math.min(income, gold_required)), "Army cost")
             gold_required = gold_required - math.floor(math.min(income, gold_required))
-            if gold_required < 1 then print(gold_required) break end
+            if gold_required < army_cost then print(gold_required) break end
         -- then remove gold reserves
             local gold_has = Game.ServerGame.LatestTurnStanding.Resources[player_id][WL.ResourceType.Gold]
             Gold_mod = {}
@@ -83,7 +83,7 @@ function Server_AdvanceTurn_End(Game, addNewOrder)
                     Gold_mod[player_id][WL.ResourceType.Gold] = -math.floor(math.min(gold_has, gold_required))
             
             gold_required = gold_required - math.floor( math.min(gold_has, gold_required) )
-            if gold_required < 1 then break end
+            if gold_required < army_cost then break end
         -- finally remove armies
             if Mod.Settings.destroyArmies == true then
                 local final_army_number = {}
@@ -95,7 +95,7 @@ function Server_AdvanceTurn_End(Game, addNewOrder)
 
                 local i = 1
                 Debt = gold_required
-                while Debt >= 1 do
+                while Debt >= army_cost do
                     if final_army_number[t_ids_list[i]] > 0 then
                         final_army_number[t_ids_list[i]] = final_army_number[t_ids_list[i]] - 1
                         Debt = Debt - Mod.Settings.armyCost
