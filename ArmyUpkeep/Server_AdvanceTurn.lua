@@ -16,18 +16,15 @@ function Server_AdvanceTurn_Order (Game, Order, Result, skipThisOrder, addNewOrd
         -- this is if they try to give themselves extra armies;
 --        if army_rm < 0 then army_rm = 0; end;
 --    addNewOrder(WL.GameOrderEvent.Create(Order.PlayerID, "Debug ind: "..ind.." t_id: "..t_id.." army count: "..army_count.." and army to remove: "..army_rm, {}, nil) )
---        if Order.PlayerID ~= Game.ServerGame.LatestTurnStanding.Territories[t_id].OwnerPlayerID then
---            skipThisOrder(WL.ModOrderControl.Skip); -- return;
---        end
-
-
 
         local terr_mod = WL.TerritoryModification.Create(t_id)
         terr_mod.AddArmies = -army_rm
+        local terr_mod_annotation = WL.TerritoryAnnotation.Create("Remove "..army_rm)
         local order = WL.GameOrderEvent.Create(Order.PlayerID, "Removed armies from "..Game.Map.Territories[t_id].Name,
             {}, {terr_mod})
+        order.TerritoryAnnotationsOpt = {t_id = terr_mod_annotation}
         addNewOrder(order);
-        --skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
+        skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
 
 
     end
