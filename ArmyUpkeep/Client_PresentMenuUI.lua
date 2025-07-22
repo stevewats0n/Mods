@@ -62,6 +62,6 @@ function To_server()
 	table.insert(orders, order);
 	Game.Orders = orders;
 
-    Select_instructions.SetText("") ; Territory_chosen_label.SetText("") ;
+    Select_instructions.SetText("") ; Territory_chosen_label.SetText("") ; Armies_slider.SetValue(0) ;
 
 end
