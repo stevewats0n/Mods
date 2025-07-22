@@ -15,14 +15,18 @@
 	end
 
     if Mod.Settings.allowRemoveArmies then
-	    local box = UI.CreateVerticalLayoutGroup(rootParent);
-	    Select_box = UI.CreateButton(box).SetText("Remove Armies").SetColor("#6C73D1").SetOnClick(Choose_territory)
-	    Select_instructions = UI.CreateLabel(box).SetText("")
-	    UI.CreateLabel(box).SetText("Number of armies to remove")
-	    Armies_slider = UI.CreateNumberInputField(box).SetSliderMinValue(0).SetSliderMaxValue(0).SetInteractable(false)
-	    Confirm_box = UI.CreateButton(box).SetText("Confirm").SetInteractable(false)
+	MainUI()
 	end
 
+end
+
+function MainUI ()
+	local box = UI.CreateVerticalLayoutGroup(rootParent);
+	Select_box = UI.CreateButton(box).SetText("Remove Armies").SetColor("#6C73D1").SetOnClick(Choose_territory)
+	Select_instructions = UI.CreateLabel(box).SetText("")
+	UI.CreateLabel(box).SetText("Number of armies to remove")
+	Armies_slider = UI.CreateNumberInputField(box).SetSliderMinValue(0).SetSliderMaxValue(0).SetInteractable(false)
+	Confirm_box = UI.CreateButton(box).SetText("Confirm").SetInteractable(false)
 end
 
 function Choose_territory ()
@@ -33,6 +37,7 @@ function Choose_territory ()
 
 function Get_selected (terr_details)
     if UI.IsDestroyed(Select_box) then return WL.CancelClickIntercept; end;
+    if terr_details == nil then MainUI() ; end ;
     Select_box.SetInteractable(true);
     local standing_info = Game.LatestStanding.Territories[terr_details.ID]
 
