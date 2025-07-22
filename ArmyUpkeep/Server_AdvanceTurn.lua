@@ -21,7 +21,7 @@ function Server_AdvanceTurn_Order (Game, Order, Result, skipThisOrder, addNewOrd
 --            skipThisOrder(WL.ModOrderControl.Skip); -- return;
 --        end
 
-        addNewOrder(WL.GameOrderEvent.Create(Order.PlayerID, "Debug ind: "..ind.." t_id: ") )
+        addNewOrder(WL.GameOrderEvent.Create(Order.PlayerID, "Debug ind: "..ind.." t_id: ", {}, nil) )
 
 --        local terr_mod = WL.TerritoryModification.Create(t_id)
 --        terr_mod.AddArmies = -army_rm
