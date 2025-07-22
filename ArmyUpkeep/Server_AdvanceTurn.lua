@@ -5,10 +5,8 @@ require("Functions")
 function Server_AdvanceTurn_Order (Game, Order, Result, skipThisOrder, addNewOrder)
     if (Order.proxyType == "GameOrderCustom" and string.sub(Order.Payload, 1, 6) == "armyRM") then
         print (Order.Payload);
---            addNewOrder(WL.GameOrderEvent.Create(Order.PlayerID, Order.Payload, {}, nil))
         local ind = string.find(Order.Payload, ",")
-                addNewOrder(WL.GameOrderEvent.Create(Order.PlayerID, "Debug ind: "..ind.." t_id: ", {}, nil) )
---        local t_id = string.sub(Order.Payload, 7, ind-1)
+        local t_id = string.sub(Order.Payload, 7, ind-1)
         -- the actual count of armies
 --        local army_count = Game.ServerGame.LatestTurnStanding.Territories[t_id].NumArmies.NumArmies
         -- how much user requested to remove
@@ -17,7 +15,7 @@ function Server_AdvanceTurn_Order (Game, Order, Result, skipThisOrder, addNewOrd
 --        army_rm = math.min(army_rm, army_count)
         -- this is if they try to give themselves extra armies;
 --        if army_rm < 0 then army_rm = 0; end;
-
+    addNewOrder(WL.GameOrderEvent.Create(Order.PlayerID, "Debug ind: "..ind.." t_id: "..t_id, {}, nil) )
 --        if Order.PlayerID ~= Game.ServerGame.LatestTurnStanding.Territories[t_id].OwnerPlayerID then
 --            skipThisOrder(WL.ModOrderControl.Skip); -- return;
 --        end
