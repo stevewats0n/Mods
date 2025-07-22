@@ -62,6 +62,4 @@ function To_server()
 	table.insert(orders, order);
 	Game.Orders = orders;
 
-    UI.Destroy(box)
-   -- MainUI()
 end
