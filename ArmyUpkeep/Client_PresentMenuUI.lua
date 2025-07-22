@@ -69,6 +69,6 @@ function To_server()
 	Game.Orders = orders;
 
     Select_instructions.SetText("") ; Territory_chosen_label.SetText("") ; Armies_slider.SetValue(0) ;
-	Confirmation_text.SetText("Will remove "..armies_removed.." armies on "..Game.Map.Territories[terr_details.ID].Name)
+	Confirmation_text.SetText("Will remove "..armies_removed.." armies on "..Game.Map.Territories[Terr_details.ID].Name)
 
 end
