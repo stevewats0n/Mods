@@ -29,6 +29,7 @@ function MainUI ()
 	Armies_slider = UI.CreateNumberInputField(box).SetSliderMinValue(0).SetSliderMaxValue(0).SetInteractable(false)
 	Territory_chosen_label = UI.CreateLabel(box).SetText("")
 	Confirm_box = UI.CreateButton(box).SetText("Confirm").SetInteractable(false)
+	Confirmation_text = UI.CreateLabel(box).SetText("").SetColor("#009933")
 end
 
 function Choose_territory ()
@@ -68,5 +69,6 @@ function To_server()
 	Game.Orders = orders;
 
     Select_instructions.SetText("") ; Territory_chosen_label.SetText("") ; Armies_slider.SetValue(0) ;
+	Confirmation_text.SetText("Will remove "..armies_removed.." armies on "..Game.Map.Territories[terr_details.ID].Name)
 
 end
