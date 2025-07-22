@@ -38,7 +38,7 @@ function Choose_territory ()
 
 function Get_selected (terr_details)
     if UI.IsDestroyed(Select_box) then return WL.CancelClickIntercept; end;
-    if terr_details == nil then MainUI() ; end ;
+    if terr_details == nil then UI.Destroy(box); MainUI() ; end ;
     Select_box.SetInteractable(true);
     local standing_info = Game.LatestStanding.Territories[terr_details.ID]
 
