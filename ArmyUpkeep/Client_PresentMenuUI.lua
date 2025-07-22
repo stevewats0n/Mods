@@ -4,6 +4,7 @@
     setMaxSize(450, 280);
     Game = game
     Close = close
+    RootParent = rootParent;
 
     if (Game.LatestStanding == nil) then
 		UI.CreateLabel(vert).SetText("Cannot use until game has begun");
@@ -21,7 +22,7 @@
 end
 
 function MainUI ()
-	local box = UI.CreateVerticalLayoutGroup(rootParent);
+	local box = UI.CreateVerticalLayoutGroup(RootParent);
 	Select_box = UI.CreateButton(box).SetText("Remove Armies").SetColor("#6C73D1").SetOnClick(Choose_territory)
 	Select_instructions = UI.CreateLabel(box).SetText("")
 	UI.CreateLabel(box).SetText("Number of armies to remove")
