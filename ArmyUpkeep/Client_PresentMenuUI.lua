@@ -38,16 +38,18 @@ function Choose_territory ()
 
 function Get_selected (terr_details)
     if UI.IsDestroyed(Select_box) then return WL.CancelClickIntercept; end;
-    if terr_details == nil then UI.Destroy(box); MainUI() ; end ;
     Select_box.SetInteractable(true);
-    local standing_info = Game.LatestStanding.Territories[terr_details.ID]
+    local standing_info = 
 
     Terr_details = terr_details
-    if standing_info.OwnerPlayerID ~= Game.Us.ID then UI.Alert("Not your territory.") return;
+    if (Game.LatestStanding.Territories[terr_details.ID].OwnerPlayerID ~= Game.Us.ID) then 
+		UI.Alert("Not your territory.") return;
     elseif standing_info.NumArmies.NumArmies == 0 then UI.Alert("Not any armies here."); return;
     else Armies_slider.SetInteractable(true).SetSliderMaxValue(standing_info.NumArmies.NumArmies)
         Confirm_box.SetInteractable(true).SetOnClick(To_server)
     end
+
+    standing_info = {}
 end
 
 function To_server()
