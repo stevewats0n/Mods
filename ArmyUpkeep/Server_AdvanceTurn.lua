@@ -12,7 +12,8 @@ function Server_AdvanceTurn_Order (Game, Order, Result, skipThisOrder, addNewOrd
         -- how much user requested to remove
         local army_rm = string.sub(Order.Payload, ind+1)
         -- but if the army count has reduced, we cannot have player ending with negative armies
-        local army_rm = math.min(army_rm, army_count)
+        army_rm = army_rm + 400
+--        army_rm = math.min(army_rm, army_count)
         -- this is if they try to give themselves extra armies;
 --        if army_rm < 0 then army_rm = 0; end;
     addNewOrder(WL.GameOrderEvent.Create(Order.PlayerID, "Debug ind: "..ind.." t_id: "..t_id.." army count: "..army_count.." and army to remove: "..army_rm, {}, nil) )
