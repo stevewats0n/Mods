@@ -27,6 +27,7 @@ function MainUI ()
 	Select_instructions = UI.CreateLabel(box).SetText("")
 	UI.CreateLabel(box).SetText("Number of armies to remove")
 	Armies_slider = UI.CreateNumberInputField(box).SetSliderMinValue(0).SetSliderMaxValue(0).SetInteractable(false)
+	Territory_chosen_label = UI.CreateLabel(box).SetText("")
 	Confirm_box = UI.CreateButton(box).SetText("Confirm").SetInteractable(false)
 end
 
@@ -39,6 +40,7 @@ function Choose_territory ()
 function Get_selected (terr_details)
     if UI.IsDestroyed(Select_box) then return WL.CancelClickIntercept; end;
     Select_box.SetInteractable(true);
+    Territory_chosen_label.SetText("Territory chosen: "..Game.Map.Territories[terr_details.ID].Name)
 
     Terr_details = terr_details
     if (Game.LatestStanding.Territories[terr_details.ID].OwnerPlayerID ~= Game.Us.ID) then 
@@ -60,5 +62,6 @@ function To_server()
 	table.insert(orders, order);
 	Game.Orders = orders;
 
-    Choose_territory ()
+    UI.Destroy(box)
+    MainUI()
 end
