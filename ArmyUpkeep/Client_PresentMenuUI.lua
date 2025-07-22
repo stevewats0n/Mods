@@ -63,5 +63,5 @@ function To_server()
 	Game.Orders = orders;
 
     UI.Destroy(box)
-    MainUI()
+   -- MainUI()
 end
