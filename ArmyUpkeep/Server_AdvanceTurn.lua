@@ -15,7 +15,7 @@ function Server_AdvanceTurn_Order (Game, Order, Result, skipThisOrder, addNewOrd
         --if army_rm > army_count then army_rm = army_count; end;
         -- this is if they try to give themselves extra armies;
 --        if army_rm < 0 then army_rm = 0; end;
-    addNewOrder(WL.GameOrderEvent.Create(Order.PlayerID, "Debug ind: "..ind.." t_id: "..t_id.." army count: "..army_count.." and army to remove: "..army_rm, {}, nil) )
+--    addNewOrder(WL.GameOrderEvent.Create(Order.PlayerID, "Debug ind: "..ind.." t_id: "..t_id.." army count: "..army_count.." and army to remove: "..army_rm, {}, nil) )
 --        if Order.PlayerID ~= Game.ServerGame.LatestTurnStanding.Territories[t_id].OwnerPlayerID then
 --            skipThisOrder(WL.ModOrderControl.Skip); -- return;
 --        end
