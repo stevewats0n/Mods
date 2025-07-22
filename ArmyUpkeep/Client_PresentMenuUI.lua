@@ -39,7 +39,6 @@ function Choose_territory ()
 function Get_selected (terr_details)
     if UI.IsDestroyed(Select_box) then return WL.CancelClickIntercept; end;
     Select_box.SetInteractable(true);
-    local standing_info = 
 
     Terr_details = terr_details
     if (Game.LatestStanding.Territories[terr_details.ID].OwnerPlayerID ~= Game.Us.ID) then 
@@ -49,7 +48,6 @@ function Get_selected (terr_details)
         Confirm_box.SetInteractable(true).SetOnClick(To_server)
     end
 
-    standing_info = {}
 end
 
 function To_server()
