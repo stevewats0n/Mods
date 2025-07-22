@@ -60,7 +60,7 @@ end
 function To_server()
     local armies_removed = Armies_slider.GetValue()
     local order = WL.GameOrderCustom.Create(
-        Game.Us.ID, "Remove "..armies_removed.." armies from "..Game.Map.Territories[Terr_details.ID].Name  .."armyRM"..Terr_details.ID..","..armies_removed,
+        Game.Us.ID, "Remove "..armies_removed.." armies from "..Game.Map.Territories[Terr_details.ID].Name ,
         "armyRM"..Terr_details.ID..","..armies_removed)
 
     local orders = Game.Orders;
