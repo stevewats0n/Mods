@@ -10,12 +10,12 @@ function Server_AdvanceTurn_Order (Game, Order, Result, skipThisOrder, addNewOrd
         -- the actual count of armies
         local army_count = Game.ServerGame.LatestTurnStanding.Territories[t_id].NumArmies.NumArmies
         -- how much user requested to remove
-        local army_rm = string.sub(Order.Payload, ind+1)
+        local armies_rm = string.sub(Order.Payload, ind+1)
         -- but if the army count has reduced, we cannot have player ending with negative armies
---        if army_rm > army_count then army_rm = army_count; end;
+--        if armies_rm > army_count then army_rm = army_count; end;
         -- this is if they try to give themselves extra armies;
---        if army_rm < 0 then army_rm = 0; end;
-    addNewOrder(WL.GameOrderEvent.Create(Order.PlayerID, "Debug ind: "..ind.." t_id: "..t_id.." army count: "..army_count.." and army to remove: "..army_rm, {}, nil) )
+--        if armies_rm < 0 then armies_rm = 0; end;
+    addNewOrder(WL.GameOrderEvent.Create(Order.PlayerID, "Debug ind: "..ind.." t_id: "..t_id.." army count: "..army_count.." and army to remove: "..armies_rm, {}, nil) )
 --        if Order.PlayerID ~= Game.ServerGame.LatestTurnStanding.Territories[t_id].OwnerPlayerID then
 --            skipThisOrder(WL.ModOrderControl.Skip); -- return;
 --        end
@@ -23,7 +23,7 @@ function Server_AdvanceTurn_Order (Game, Order, Result, skipThisOrder, addNewOrd
 
 
 --        local terr_mod = WL.TerritoryModification.Create(t_id)
---        terr_mod.AddArmies = -army_rm
+--        terr_mod.AddArmies = -armies_rm
 --        local order = WL.GameOrderEvent.Create(Order.PlayerID, "Removed armies from "..Game.Map.Territories[t_id].Name,
 --            {}, {terr_mod})
 --        addNewOrder(order);
