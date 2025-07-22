@@ -6,8 +6,8 @@ function Server_AdvanceTurn_Order (Game, Order, Result, skipThisOrder, addNewOrd
     if (Order.proxyType == "GameOrderCustom" and string.sub(Order.Payload, 1, 6) == "armyRM") then
         print (Order.Payload);
             addNewOrder(WL.GameOrderEvent.Create(Order.PlayerID, Order.Payload, {}, nil))
-        local ind = string.find(Order.Payload, ",")
-        local t_id = string.sub(Order.Payload, 7, ind-1)
+--        local ind = string.find(Order.Payload, ",")
+--        local t_id = string.sub(Order.Payload, 7, ind-1)
         -- the actual count of armies
 --        local army_count = Game.ServerGame.LatestTurnStanding.Territories[t_id].NumArmies.NumArmies
         -- how much user requested to remove
