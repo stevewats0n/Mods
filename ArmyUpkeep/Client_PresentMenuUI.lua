@@ -47,9 +47,14 @@ function Get_selected (terr_details)
 		UI.Alert("Not your territory.") return;
     elseif Game.LatestStanding.Territories[terr_details.ID].NumArmies.NumArmies == 0 then UI.Alert("Not any armies here."); return;
     else Armies_slider.SetInteractable(true).SetSliderMaxValue(Game.LatestStanding.Territories[terr_details.ID].NumArmies.NumArmies)
-        Confirm_box.SetInteractable(true).SetOnClick(To_server)
+        Confirm_box.SetInteractable(true).SetOnClick(Validate_armies_input)
     end
+end
 
+
+function Validate_armies_input ()
+	if Armies_slider.GetValue() < 0 then UI.Alert("Armies to remove must be positive.")
+	else To_server() end
 end
 
 function To_server()
