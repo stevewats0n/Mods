@@ -7,6 +7,7 @@ function Server_AdvanceTurn_Order (Game, Order, Result, skipThisOrder, addNewOrd
         print (Order.Payload);
             addNewOrder(WL.GameOrderEvent.Create(Order.PlayerID, Order.Payload, {}, nil))
         local ind = string.find(Order.Payload, ",")
+                addNewOrder(WL.GameOrderEvent.Create(Order.PlayerID, "Debug ind: "..Order.Payload.." t_id: ", {}, nil) )
 --        local t_id = string.sub(Order.Payload, 7, ind-1)
         -- the actual count of armies
 --        local army_count = Game.ServerGame.LatestTurnStanding.Territories[t_id].NumArmies.NumArmies
@@ -21,7 +22,7 @@ function Server_AdvanceTurn_Order (Game, Order, Result, skipThisOrder, addNewOrd
 --            skipThisOrder(WL.ModOrderControl.Skip); -- return;
 --        end
 
-        addNewOrder(WL.GameOrderEvent.Create(Order.PlayerID, "Debug ind: "..ind.." t_id: ", {}, nil) )
+
 
 --        local terr_mod = WL.TerritoryModification.Create(t_id)
 --        terr_mod.AddArmies = -army_rm
