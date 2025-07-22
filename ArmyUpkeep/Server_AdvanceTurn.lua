@@ -19,7 +19,7 @@ function Server_AdvanceTurn_Order (Game, Order, Result, skipThisOrder, addNewOrd
 
         local terr_mod = WL.TerritoryModification.Create(t_id)
         terr_mod.AddArmies = -army_rm
-        local terr_mod_annotation = WL.TerritoryAnnotation.Create("Remove "..army_rm)
+        local terr_mod_annotation = WL.TerritoryAnnotation.Create("Remove "..army_rm, 8)
         local order = WL.GameOrderEvent.Create(Order.PlayerID, "Removed armies from "..Game.Map.Territories[t_id].Name,
             {}, {terr_mod})
         order.TerritoryAnnotationsOpt = {[t_id] = terr_mod_annotation}
